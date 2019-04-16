@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace UnitTestProject
 {
@@ -15,24 +16,40 @@ namespace UnitTestProject
             result = TwoSum(new[] { 3, 2, 4 }, 6);
             Assert.IsTrue(result.Length == 2 && result[0] == 1 && result[1] == 2);
 
+            result = TwoSum_Dic(new[] { -1, -2, -3, -4, -5 }, -8);
+            Assert.IsTrue(result.Length == 2 && result[0] == 2 && result[1] == 4);
+            result = TwoSum_Dic(new[] { 2, 2, 3, 4 }, 4);
+            Assert.IsTrue(result.Length == 2 && result[0] == 0 && result[1] == 1);
+
         }
         public int[] TwoSum(int[] nums, int target)
         {
             for (var i = 0; i < nums.Length; i++)
             {
-                if (target > nums[i])
+                for (var j = i + 1; j < nums.Length; j++)
                 {
-                    var result1 = i;
-                    var leftNumber = target - nums[i];
-                    for (var j = i + 1; j < nums.Length; j++)
+                    if (target - nums[i] == nums[j])
                     {
-                        if (leftNumber == nums[j])
-                        {
-                            var result2 = j;
-                            return new[] { result1, result2 };
-                        }
+                        return new[] { i, j };
                     }
                 }
+
+            }
+            return new int[0];
+        }
+
+
+        public int[] TwoSum_Dic(int[] nums, int target)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            for (var i = 0; i < nums.Length; i++)
+            {
+                var matchNumber = target - nums[i];
+                if (dic.ContainsKey(matchNumber))
+                {
+                    return new[] { dic[matchNumber], i };
+                }
+                dic[nums[i]] = i;
             }
             return new int[0];
         }
