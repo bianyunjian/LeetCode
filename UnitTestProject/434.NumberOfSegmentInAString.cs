@@ -9,18 +9,18 @@ namespace UnitTestProject
         [TestMethod]
         public void TestNumberOfSegmentInAString()
         {
-            Assert.IsTrue(countSegment(" Hello, my name is John ") == 5);
-            Assert.IsTrue(countSegment("") == 0);
-            Assert.IsTrue(countSegment(" ") == 0);
-            Assert.IsTrue(countSegment(" 1") == 1);
-            Assert.IsTrue(countSegment("1 ") == 1);
-            Assert.IsTrue(countSegment(" 1 ") == 1);
+            Assert.IsTrue(CountSegments(" Hello, my name is John ") == 5);
+            Assert.IsTrue(CountSegments("") == 0);
+            Assert.IsTrue(CountSegments(" ") == 0);
+            Assert.IsTrue(CountSegments(" 1") == 1);
+            Assert.IsTrue(CountSegments("1 ") == 1);
+            Assert.IsTrue(CountSegments(" 1 ") == 1);
 
-            Assert.IsTrue(countSegment(" 1 2 ") == 2);
+            Assert.IsTrue(CountSegments(" 1 2 ") == 2);
 
             
         }
-        public int countSegment(string s)
+        public int CountSegments(string s)
         {
             var count = 0;
 
