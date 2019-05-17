@@ -38,6 +38,22 @@ namespace UnitTestProject
             //      4
 
             Assert.IsTrue(Tree2str(treeNode2) == "1(2()(4))(3)");
+
+
+            var treeNode3 = new TreeNode(1);
+            treeNode3.left = new TreeNode(2);
+            treeNode3.right = new TreeNode(3);
+            treeNode3.left.left = new TreeNode(4);
+            treeNode3.left.left.left = new TreeNode(5);
+            treeNode3.right.right = new TreeNode(6);
+            //      1
+            //     /  \
+            //    2    3
+            //   /      \
+            //  4        6
+            // /
+            //5
+            Assert.IsTrue(Tree2str(treeNode3) == "1(2(4(5)))(3()(6))");
         }
 
         public string Tree2str(TreeNode t)
@@ -47,6 +63,7 @@ namespace UnitTestProject
             if (t != null)
             {
                 result += t.val.ToString();
+                Console.WriteLine(result);
             }
             else
             {
@@ -57,6 +74,7 @@ namespace UnitTestProject
             {
                 var leftString = Tree2str(t.left);
                 result += "(" + leftString + ")";
+                Console.WriteLine(result);
             }
             else if (t.right != null)
             {
@@ -67,9 +85,9 @@ namespace UnitTestProject
             {
                 var rightString = Tree2str(t.right);
                 result += "(" + rightString + ")";
+                Console.WriteLine(result);
             }
 
-            Console.WriteLine(result);
             return result;
         }
         public class TreeNode
