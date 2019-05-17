@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace UnitTestProject
 {
@@ -55,40 +56,42 @@ namespace UnitTestProject
             //5
             Assert.IsTrue(Tree2str(treeNode3) == "1(2(4(5)))(3()(6))");
         }
-
         public string Tree2str(TreeNode t)
         {
-            string result = string.Empty;
+            StringBuilder builder = new StringBuilder();
+            doTree2str(builder, t);
+            return builder.ToString();
+        }
+        public void doTree2str(StringBuilder builder, TreeNode t)
+        {
 
             if (t != null)
             {
-                result += t.val.ToString();
-                Console.WriteLine(result);
+                builder.Append(t.val);
             }
             else
             {
-                return result;
+                return;
 
             }
             if (t.left != null)
             {
-                var leftString = Tree2str(t.left);
-                result += "(" + leftString + ")";
-                Console.WriteLine(result);
+                builder.Append("(");
+                doTree2str(builder, t.left);
+                builder.Append(")");
             }
             else if (t.right != null)
             {
-                result += "()";
+                builder.Append("(").Append(")");
             }
 
             if (t.right != null)
             {
-                var rightString = Tree2str(t.right);
-                result += "(" + rightString + ")";
-                Console.WriteLine(result);
-            }
+                builder.Append("(");
+                doTree2str(builder, t.right);
+                builder.Append(")");
 
-            return result;
+            }
         }
         public class TreeNode
         {
